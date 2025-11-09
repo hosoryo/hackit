@@ -11865,7 +11865,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -7951030645464613223, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -22165,7 +22166,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.00039999827, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0.123931505, y: 1.285, z: -2.9245498}
   serializedVersion: 2
   m_UseSpring: 0
   m_Spring:
@@ -31737,6 +31738,7 @@ PrefabInstance:
     - {fileID: -101824191108372374, guid: 85faf4ff39bc5e04198cd61d747ca8df, type: 3}
     - {fileID: 4170697499578674385, guid: 85faf4ff39bc5e04198cd61d747ca8df, type: 3}
     - {fileID: -3800277442303648109, guid: 85faf4ff39bc5e04198cd61d747ca8df, type: 3}
+    - {fileID: 8171809712850242161, guid: 85faf4ff39bc5e04198cd61d747ca8df, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -4420296421907905359, guid: 85faf4ff39bc5e04198cd61d747ca8df, type: 3}

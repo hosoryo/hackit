@@ -39,21 +39,10 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
         [Tooltip("Near-Far Interactor used for distant/ray manipulation. Use this or Ray Interactor, not both.")]
         NearFarInteractor m_NearFarInteractor;
 
-        [SerializeField]
-        [Tooltip("The interactor used for teleportation.")]
-        XRRayInteractor m_TeleportInteractor;
 
         [Space]
         [Header("Controller Actions")]
 
-        [SerializeField]
-        [Tooltip("The reference to the action to start the teleport aiming mode for this controller.")]
-        [FormerlySerializedAs("m_TeleportModeActivate")]
-        InputActionReference m_TeleportMode;
-
-        [SerializeField]
-        [Tooltip("The reference to the action to cancel the teleport aiming mode for this controller.")]
-        InputActionReference m_TeleportModeCancel;
 
         [SerializeField]
         [Tooltip("The reference to the action of continuous turning the XR Origin with this controller.")]
@@ -155,20 +144,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
                 m_RayInteractor.uiHoverExited.AddListener(OnUIHoverExited);
             }
 
-            var teleportModeAction = GetInputAction(m_TeleportMode);
-            if (teleportModeAction != null)
-            {
-                teleportModeAction.performed += OnStartTeleport;
-                teleportModeAction.performed += OnStartLocomotion;
-                teleportModeAction.canceled += OnCancelTeleport;
-                teleportModeAction.canceled += OnStopLocomotion;
-            }
-
-            var teleportModeCancelAction = GetInputAction(m_TeleportModeCancel);
-            if (teleportModeCancelAction != null)
-            {
-                teleportModeCancelAction.performed += OnCancelTeleport;
-            }
+           
 
             var moveAction = GetInputAction(m_Move);
             if (moveAction != null)
@@ -210,20 +186,6 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
                 m_RayInteractor.uiHoverExited.RemoveListener(OnUIHoverExited);
             }
 
-            var teleportModeAction = GetInputAction(m_TeleportMode);
-            if (teleportModeAction != null)
-            {
-                teleportModeAction.performed -= OnStartTeleport;
-                teleportModeAction.performed -= OnStartLocomotion;
-                teleportModeAction.canceled -= OnCancelTeleport;
-                teleportModeAction.canceled -= OnStopLocomotion;
-            }
-
-            var teleportModeCancelAction = GetInputAction(m_TeleportModeCancel);
-            if (teleportModeCancelAction != null)
-            {
-                teleportModeCancelAction.performed -= OnCancelTeleport;
-            }
 
             var moveAction = GetInputAction(m_Move);
             if (moveAction != null)
@@ -247,21 +209,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
             }
         }
 
-        void OnStartTeleport(InputAction.CallbackContext context)
-        {
-            m_PostponedDeactivateTeleport = false;
-
-            if (m_TeleportInteractor != null)
-                m_TeleportInteractor.gameObject.SetActive(true);
-
-            if (m_RayInteractor != null)
-                m_RayInteractor.gameObject.SetActive(false);
-
-            if (m_NearFarInteractor != null && m_NearFarInteractor.selectionRegion.Value != NearFarInteractor.Region.Near)
-                m_NearFarInteractor.gameObject.SetActive(false);
-
-            m_RayInteractorChanged?.Invoke(m_TeleportInteractor);
-        }
+  
 
         void OnCancelTeleport(InputAction.CallbackContext context)
         {
@@ -390,8 +338,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
                 m_RayInteractor = null;
             }
 
-            if (m_TeleportInteractor != null)
-                m_TeleportInteractor.gameObject.SetActive(false);
+            
 
             // Allow the actions to be refreshed when this component is re-enabled.
             // See comments in Start for why we wait until Start to enable/disable actions.
@@ -424,13 +371,6 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
             // Since this behavior has the default execution order, it runs after the XRInteractionManager,
             // so selection events have been finished by now this frame. This means that the teleport interactor
             // has had a chance to process its select interaction event and teleport if needed.
-            if (m_PostponedDeactivateTeleport)
-            {
-                if (m_TeleportInteractor != null)
-                    m_TeleportInteractor.gameObject.SetActive(false);
-
-                m_PostponedDeactivateTeleport = false;
-            }
 
             // If stick input caused the near region to be entered,
             // wait until the stick is released before enabling locomotion.
@@ -444,14 +384,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
                     hasStickInput = HasStickInput(attachController);
                 }
 
-                if (!hasStickInput)
-                {
-                    m_PostponedNearRegionLocomotion = false;
-
-                    UpdateLocomotionActions();
-                    if (!m_NearFarEnableTeleportDuringNearInteraction)
-                        DisableTeleportActions();
-                }
+                
             }
         }
 
@@ -459,8 +392,6 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
         {
             // Disable/enable Teleport and Turn when Move is enabled/disabled.
             SetEnabled(m_Move, m_SmoothMotionEnabled);
-            SetEnabled(m_TeleportMode, !m_SmoothMotionEnabled);
-            SetEnabled(m_TeleportModeCancel, !m_SmoothMotionEnabled);
 
             // Disable ability to turn when using continuous movement
             SetEnabled(m_Turn, !m_SmoothMotionEnabled && m_SmoothTurnEnabled);
@@ -469,8 +400,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
 
         void DisableTeleportActions()
         {
-            DisableAction(m_TeleportMode);
-            DisableAction(m_TeleportModeCancel);
+
         }
 
         void DisableMoveAndTurnActions()

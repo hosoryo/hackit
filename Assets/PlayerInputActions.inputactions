@@ -1,0 +1,54 @@
+{
+    "name": "PlayerInputActions",
+    "maps": [
+        {
+            "name": "RightCoontroller",
+            "id": "cf797aaa-69b8-4cd3-9ac8-8e186ecf785d",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "be9810dd-df05-490f-a4ea-0ef627119948",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightA_Delete",
+                    "type": "Button",
+                    "id": "a83af8d6-6da0-4dbf-8d32-10497853bb39",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cc8648e0-ac70-43c9-959f-1a3992329a6e",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47d35d52-da4e-44e0-97c3-4e755bdd3520",
+                    "path": "<XRController>{RightHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightA_Delete",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

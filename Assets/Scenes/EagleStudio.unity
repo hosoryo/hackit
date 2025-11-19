@@ -11047,6 +11047,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3869675141648866041, guid: 3b5a60a734675e34e851458e3c258d2e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1015464902}
+    - targetCorrespondingSourceObject: {fileID: 3869675141648866041, guid: 3b5a60a734675e34e851458e3c258d2e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1015464908}
+    - targetCorrespondingSourceObject: {fileID: 3869675141648866041, guid: 3b5a60a734675e34e851458e3c258d2e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1015464909}
   m_SourcePrefab: {fileID: 100100000, guid: 3b5a60a734675e34e851458e3c258d2e, type: 3}
 --- !u!1 &1015464900 stripped
 GameObject:
@@ -11236,6 +11242,38 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1015464908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015464900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e9fe0f51d91a74da171784d6d63584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aButtonAction: {fileID: 0}
+  disableInsteadOfDestroy: 0
+  safetyDelay: 0.1
+--- !u!114 &1015464909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015464900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050404ea72e4b1543b3130ec6321ae65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  lineWidth: 0.01
+  lineMaterial: {fileID: 0}
+  useAllColliders: 0
+  closeLoop: 1
 --- !u!1001 &1016560013
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16879,9 +16917,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aafeefb95b0c9794d9a878a96fa0610e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineColor: {r: 0, g: 1, b: 0, a: 1}
+  outlineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   lineWidth: 1
-  includeChildColliders: 1
+  lineMaterial: {fileID: 0}
+  useAllColliders: 0
+  projectToYZero: 0
+  showTopFaceOnly: 1
 --- !u!1 &1655377790
 GameObject:
   m_ObjectHideFlags: 0
